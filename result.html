@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>診断結果 | クリニック経営改善診断AI</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="service-label">診断結果ページ</p>
+        <h1>クリニック経営改善診断AI</h1>
+      </div>
+      <span class="topbar-status">診断結果</span>
+    </header>
+
+    <main>
+      <section id="missingResult" class="notice hidden">
+        診断結果が見つかりません。診断リンクから再度アクセスしてください。
+      </section>
+
+      <section id="resultContent" class="result-layout hidden">
+        <aside class="result-summary-panel">
+          <div class="result-header">
+            <p id="profileLabel" class="service-label"></p>
+            <h2 id="profileTitle"></h2>
+            <p id="profileSummary"></p>
+          </div>
+
+          <div class="metric-row">
+            <div>
+              <span id="opportunityIndex" class="metric-value">0</span>
+              <span class="metric-unit">/100</span>
+              <p>改善余地指数</p>
+            </div>
+            <div>
+              <span id="topScore" class="metric-value">0</span>
+              <span class="metric-unit">点</span>
+              <p>いちばん大きい課題の強さ</p>
+            </div>
+          </div>
+
+          <div class="share-box">
+            <h3>回答ID</h3>
+            <p id="diagnosisId"></p>
+            <p id="syncStatus" class="copy-status"></p>
+          </div>
+
+          <div class="wait-box">
+            <h3>次の流れ</h3>
+            <p>
+              気になる結果があれば、15分の無料相談で、自院に合わせた具体的な進め方をご案内します。
+            </p>
+          </div>
+
+          <button type="button" id="copyButton" class="secondary-button full-width">診断結果をMarkdownでコピー</button>
+          <p id="copyStatus" class="copy-status" role="status"></p>
+        </aside>
+
+        <section class="result-detail-panel">
+          <section class="result-block">
+            <h3>自院へのAI活用 処方箋</h3>
+            <p class="result-note">
+              課題の大きさだけでなく、始めやすさと医療情報リスクも加味して、先に試すべき順番をご提案します。
+            </p>
+            <div id="prescriptionCards" class="prescription-grid"></div>
+          </section>
+
+          <section class="result-block">
+            <h3>優先して提案するAIアプリ</h3>
+            <div id="recommendations" class="recommendations"></div>
+          </section>
+
+          <section class="result-block">
+            <h3>さらに整理すると効果が出やすいこと</h3>
+            <ul id="nextQuestions" class="compact-list"></ul>
+          </section>
+
+          <section class="result-block">
+            <h3>AI化しない/後回しにする範囲</h3>
+            <ul id="noGoList" class="compact-list danger-list"></ul>
+          </section>
+
+          <section class="result-block">
+            <h3>30日導入ロードマップ</h3>
+            <ol id="roadmap" class="roadmap"></ol>
+          </section>
+
+          <section class="result-block">
+            <h3>診断のまとめ</h3>
+            <p id="salesCopy" class="sales-copy"></p>
+          </section>
+
+          <section class="result-block">
+            <h3>この診断の特長</h3>
+            <ul class="compact-list">
+              <li>院長の悩みを、クリニック業務の各領域に分けて整理します。</li>
+              <li>効果の大きさだけでなく、始めやすさと医療情報リスクで優先順位を決めます。</li>
+              <li>「まず何から」「どこは慎重に」が、具体的なAI活用の候補として見えます。</li>
+            </ul>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
