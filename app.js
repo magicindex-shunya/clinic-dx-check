@@ -219,6 +219,7 @@ const LATEST_KEY = "clinicDiagnosis:latest";
 const SUBMISSION_ENDPOINT = String(
   window.CLINIC_DIAGNOSIS_CONFIG?.submissionEndpoint ?? "",
 ).trim();
+const INTAKE_URL = String(window.CLINIC_DIAGNOSIS_CONFIG?.intakeUrl ?? "").trim();
 
 const form = document.querySelector("#diagnosisForm");
 const questionList = document.querySelector("#questionList");
@@ -475,6 +476,7 @@ async function sendResult(result) {
     body.set("clinicName", result.clinicName);
     body.set("contactRoute", result.contactRoute);
     body.set("clinicType", result.clinicType);
+    body.set("source", result.source);
     body.set("profileLabel", result.profile.label);
     body.set("opportunityIndex", String(result.opportunityIndex));
 
@@ -512,6 +514,16 @@ function renderResult(result) {
   setText("#salesCopy", result.salesCopy);
   setText("#diagnosisId", result.diagnosisId);
   setText("#syncStatus", result.syncStatus);
+
+  const intakeLink = document.querySelector("#intakeLink");
+  if (intakeLink) {
+    if (INTAKE_URL) {
+      intakeLink.href = INTAKE_URL;
+      intakeLink.classList.remove("hidden");
+    } else {
+      intakeLink.classList.add("hidden");
+    }
+  }
 
   const prescriptionCards = document.querySelector("#prescriptionCards");
   if (prescriptionCards) {
@@ -606,6 +618,7 @@ function buildMarkdown(result) {
 - 連絡先・LINE表示名: ${result.contactRoute || "未入力"}
 - 診療科・業態: ${result.clinicType}
 - 優先したい改善: ${result.primaryGoal}
+- 流入元: ${result.source || "未指定"}
 - 診断タイプ: ${result.profile.label}
 - 改善余地指数: ${result.opportunityIndex}/100
 
